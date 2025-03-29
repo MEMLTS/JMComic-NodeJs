@@ -1,0 +1,17 @@
+{
+  "name": "jmcomic-nodejs",
+  "version": "1.0.0",
+  "description": "NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JMComic",
+    "涩涩",
+    "nodejs",
+    "18comic"
+  ],
+  "author": "MEMLTS",
+  "license": "GPL-3.0-or-later"
+}
