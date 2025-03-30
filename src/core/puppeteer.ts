@@ -37,27 +37,30 @@ class BrowserCommander {
       args: ["--no-sandbox"],
     });
 
-    console.log("🦾 浏览器装甲已启动");
+    logger.info("🦾 浏览器装甲已启动");
 
     // 断连自动重启
     this.browser.on("disconnected", async () => {
-      console.log("⚠️ 浏览器连接中断，执行复活协议...");
+      logger.warn("⚠️ 浏览器连接中断，执行复活协议...");
       await this.restart();
     });
   }
 
   // 🌐 导航获取原始数据
   public async navigateToUrl(url: string): Promise<PageContent> {
-    if (!this.browser) throw new Error("浏览器未初始化！先执行initBrowser()");
+    if (!this.browser) {
+      logger.warn("🚀 浏览器未启动，正在尝试启动浏览器");
+      await this.initBrowser();
+    }
 
     if (this.activePages >= this.MAX_TABS) {
-      console.log("💥 触发标签页熔断机制");
+      logger.warn("💥 触发标签页熔断机制");
       await this.restart();
     }
 
     const page = await this.createPage();
     try {
-      console.log(`🎯 导航至：${url}`);
+      logger.info(`🎯 导航至：${url}`);
       await page.goto(url, {
         waitUntil: "networkidle2",
         timeout: 30000,
@@ -94,7 +97,7 @@ class BrowserCommander {
   private async restart(): Promise<void> {
     if (!this.browser) return;
 
-    console.log("🔄 执行浏览器重启协议...");
+    logger.info("🔄 执行浏览器重启协议...");
     await this.browser.close();
     this.browser = null;
     this.activePages = 0;
