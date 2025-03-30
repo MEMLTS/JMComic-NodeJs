@@ -1,57 +1,155 @@
-import axios from 'axios';
-import * as cheerio from 'cheerio';
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import * as cheerio from "cheerio";
 
-const TARGET_URL = 'https://18comic.vip/search/photos?search_query=%E8%A7%A6%E7%94%B5';
+// 🌌 量子隐形模式启动
+puppeteer.use(StealthPlugin());
 
-const COMMON_HEADERS = {
-  Authority: '18comic.vip',
-  Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-  'Accept-Encoding': 'gzip, deflate, br, zstd',
-  'Accept-Language': 'zh-CN,zh;q=0.9',
-  'Cache-Control': 'no-cache',
-  Cookie: 'ipcountry=SG; theme=light; AVS=pfg1spscpfcpe21o9m7fgnqgak; __cflb=02DiuDFSTg91mAHCXokVePBgH1pMSYFvSqfCDRQesJFFz; ipm5=0a2ec1a7b080f92394c0c9c4047fcb73; cover=1; login_reminder=1; shuntflag=1; rec_author=%E6%9D%BF%E5%A0%B4%E5%BA%83%E5%BF%97; cf_clearance=4JrPkbWBQ03Lt6OA8cclBrraqN.iaN0G92A66Vu_MQ4-1743233638-1.2.1.1-hAAjclN5SLYtB8nH1iZbYxUZYJC9ft8x8ATyIAhlB47h9diAoDCZ5g0fd.2EUJV9VXwGs5_9MvlB4rvO1bAvvWcDfa3axQIRGplHyqYivUZm39a9gKhGaM84V4OMxU0RMT8Wq.lv_WnDzl5n7.jRlpPaVPk6wMzg7WH83AM8Bea7JJni.kkgPUrFKpjBPhovoALz17Pi7TcbdSpNU9iYW7FnwO5j00VEpUNW.vcMoZpJvFWKQvMkrGxuzhcpIBM6TSetQN329O4SBTdAGQxZBHQaRwkWLH21O7lMawOXa5zTLkGjOB0NCNcuOMMAXQrrhxMMTrKe5UkOOVDCz1VZEybSJ4ZdqAuvmmItLp_cxno',
-  Priority: 'u=0, i',
-  Referer: 'https://18comic.vip/',
-  'Sec-Ch-Ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-  'Sec-Ch-Ua-Mobile': '?0',
-  'Sec-Ch-Ua-Platform': '"Linux"',
-  'Sec-Fetch-Dest': 'document',
-  'Sec-Fetch-Mode': 'navigate',
-  'Sec-Fetch-Site': 'same-origin',
-  'Sec-Fetch-User': '?1',
-  'Upgrade-Insecure-Requests': '1',
-  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
-};
+class PuppeteerNuclearStrike {
+  constructor() {
+    this.browser = null;
+    this.page = null;
+    this.config = {
+      launchOptions: {
+        headless: false, // "new", // 新型无头模式
+        executablePath: '/usr/bin/google-chrome',
+        args: [
+          "--no-sandbox",
+          "--disable-web-security",
+          "--disable-features=IsolateOrigins,site-per-process",
+        ],
+        ignoreHTTPSErrors: true, // 突破SSL护盾
+      },
+      stealthConfig: {
+        availableEvasions: [
+          "chrome.app",
+          "chrome.csi",
+          "chrome.loadTimes",
+          "chrome.runtime",
+          "iframe.contentWindow",
+          "media.codecs",
+          "navigator.hardwareConcurrency",
+          "navigator.languages",
+          "navigator.permissions",
+          "navigator.plugins",
+          "navigator.webdriver",
+          "sourceurl",
+          "webgl",
+          "window.outerdimensions",
+        ],
+      },
+    };
+  }
 
-async function fetchComicData() {
-  try {
-    const response = await axios.get(TARGET_URL, {
-      headers: COMMON_HEADERS,
-      decompress: true
+  async initBrowser() {
+    try {
+      console.log("🚀 启动量子隐形浏览器...");
+      this.browser = await puppeteer.launch(this.config.launchOptions);
+      this.page = await this.browser.newPage();
+
+      // 🕶️ 伪装成人类战士
+      await this.page.setUserAgent(
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+      );
+      await this.page.setExtraHTTPHeaders({
+        "accept-language": "zh-CN,zh;q=0.9",
+        "sec-ch-ua":
+          '"Google Chrome";v="125", "Chromium";v="125", "Not=A?Brand";v="99"',
+      });
+
+      // ⚡ 激活反检测系统
+      await this.page.evaluateOnNewDocument(() => {
+        Object.defineProperty(navigator, "webdriver", { get: () => false });
+      });
+
+      console.log("🕶️ 浏览器启动完成，反检测系统激活...");
+    } catch (error) {
+      console.error("💥 初始化浏览器失败：", error.message);
+      throw error;
+    }
+  }
+
+  async nuclearStrike(targetUrl) {
+    try {
+      console.log(`🎯 精确制导打击目标: ${targetUrl}`);
+      await this.initBrowser();
+
+      // 🎯 精确制导打击
+      await this.page.goto(targetUrl, {
+        waitUntil: "networkidle2",
+        timeout: 15000,
+      });
+
+      // 🔍 量子扫描DOM
+      const pageContent = await this.page.evaluate(() => {
+        return {
+          html: document.documentElement.outerHTML,
+          cookies: document.cookie,
+          headers: {
+            referer: document.referrer,
+            origin: location.origin,
+          },
+        };
+      });
+
+      console.log("🧠 页面内容已获取，开始解析数据...");
+
+      // 🧠 智能解析数据...
+      const result = this.parseQuantumData(pageContent);
+      console.log("✅ 数据解析完成:", JSON.stringify(result, null, 2));
+
+      return result;
+    } catch (error) {
+      console.error(`💥 核弹偏离轨道: ${error.message}`);
+      throw error;
+    } finally {
+      // 🧹 清理战场
+      await this.browser?.close();
+      console.log("🧹 浏览器已关闭，战场清理完成...");
+    }
+  }
+
+  parseQuantumData(data) {
+    const $ = cheerio.load(data.html); // 使用获取的HTML进行解析
+    const result = [];
+
+    console.log("🔍 开始解析视频项...");
+
+    $(".col-xs-6.col-sm-6.col-md-4.col-lg-3.list-col").each((i, el) => {
+      const title = $(el).find(".video-title").text().trim();
+      const views = $(el).find(".text-white").first().text().trim(); // 获取观看次数
+      const imgSrc = $(el).find("img").attr("data-original"); // 获取图片的 data-original
+      const category = $(el).find(".label-category").text().trim(); // 获取分类标签
+      const albumLink = $(el).find("a").attr("href"); // 获取专辑链接
+      const tags = [];
+      const likes = $(el).find(".label-loveicon span").text().trim(); // 获取喜欢次数
+
+      $(el).find(".tags .tag").each((i, tag) => {
+        tags.push($(tag).text().trim());
+      });
+
+      const author = $(el).find(".title-truncate a:not(.tag)").text().trim();
+
+      result.push({
+        title,
+        views,
+        imgSrc,
+        category,
+        albumLink,
+        tags,
+        likes,
+        author
+      });
     });
 
-    const $ = cheerio.load(response.data);
-    const comics = [];
-
-    $('div.well.p-b-15.p-l-5.p-r-5').each((index, element) => {
-      const comic = {
-        title: $(element).find('.video-title.title-truncate').text().trim(),
-        link: $(element).find('a').attr('href'),
-        imgSrc: $(element).find('img').attr('data-original'),
-        likes: $(element).find('.label-loveicon span').text().trim(),
-        timestamp: $(element).find('.timeago').attr('title')
-      };
-      comics.push(comic);
-    });
-
-    console.log('🎉 成功抓取漫画数据：', comics);
-    return comics;
-  } catch (error) {
-    console.error('❌ 抓取失败：', error.response?.status || error.message);
-    throw new Error(`请求失败：${error.message}`);
+    return {
+      success: result.length > 0,
+      data: result,
+      timestamp: Date.now(),
+    };
   }
 }
 
-fetchComicData()
-  .then(() => console.log('✅ 任务完成'))
-  .catch(() => console.log('⛔ 任务异常'));
+// 使用方式：
+const striker = new PuppeteerNuclearStrike();
+await striker.nuclearStrike("https://18comic.vip/search/photos?search_query=%E8%A7%A6%E7%94%B5");
