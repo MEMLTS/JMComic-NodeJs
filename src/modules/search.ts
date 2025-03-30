@@ -1,4 +1,4 @@
-import { browserCommander } from "../core/puppeteer.js";
+import { browserCommander } from "../core/puppeteer";
 import * as cheerio from "cheerio";
 
 export class ComicSearcher {
