@@ -1,6 +1,6 @@
 import { browserCommander } from "../core/puppeteer.js";
 import * as cheerio from "cheerio";
-import { setupLogger } from "../core/log.js";
+
 export class ComicSearcher {
   static async search(keyword: string) {
     const encodedKeyword = encodeURIComponent(keyword);
@@ -35,7 +35,6 @@ export class ComicSearcher {
         tags.push($(tag).text().trim());
       });
 
-      // 🧬 结构化数据体
       const resultData = {
         title: extract(".video-title"),
         views: extract(".text-white:first"),
@@ -57,11 +56,3 @@ export class ComicSearcher {
     };
   }
 }
-
-(async () => {
-  setupLogger();
-  await browserCommander.initBrowser();
-  logger.info("🚀 浏览器初始化完成");
-  const result = await ComicSearcher.search("触電");
-  logger.info("搜索结果:", result);
-})();
