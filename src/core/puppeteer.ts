@@ -37,11 +37,11 @@ class BrowserCommander {
       args: ["--no-sandbox"],
     });
 
-    logger.info("🦾 浏览器装甲已启动");
+    logger.info("Admilk坐镇！浏览器装甲已启动！！！");
 
     // 断连自动重启
     this.browser.on("disconnected", async () => {
-      logger.warn("⚠️ 浏览器连接中断，执行复活协议...");
+      logger.warn("浏览器连接中断，执行复活协议...");
       await this.restart();
     });
   }
@@ -49,12 +49,12 @@ class BrowserCommander {
   // 🌐 导航获取原始数据
   public async navigateToUrl(url: string): Promise<PageContent> {
     if (!this.browser) {
-      logger.warn("🚀 浏览器未启动，正在尝试启动浏览器");
+      logger.warn("浏览器未启动，正在尝试启动浏览器");
       await this.initBrowser();
     }
 
     if (this.activePages >= this.MAX_TABS) {
-      logger.warn("💥 触发标签页熔断机制");
+      logger.warn(`标签页大于${this.MAX_TABS}触发标签页熔断机制`);
       await this.restart();
     }
 

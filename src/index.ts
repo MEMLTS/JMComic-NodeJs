@@ -1,4 +1,5 @@
-import { ComicSearcher } from "./modules/search";
+// 搜索
+// import { ComicSearcher } from "./modules/search";
 import { setupLogger } from "./core/log";
 import { browserCommander } from "./core/puppeteer";
 
@@ -10,7 +11,7 @@ try {
     await browserCommander.initBrowser();
     logger.info("🚀 浏览器初始化完成");
 } catch (error) {
-    logger.error("🚀 浏览器初始化失败", error);
+    logger.error("浏览器初始化失败", error);
 }
 
 

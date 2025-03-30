@@ -11,7 +11,7 @@ export class ComicSearcher {
       return this.parseSearchResults(html);
     } catch (error) {
       logger.error(
-        `💥 搜索失败：${error instanceof Error ? error.message : "未知错误"}`
+        `搜索失败：${error instanceof Error ? error.message : "未知错误"}`
       );
       throw error;
     }
