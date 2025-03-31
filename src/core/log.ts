@@ -1,5 +1,3 @@
-import { info } from "console";
-
 type LogLevel =
   | "debug"
   | "info"

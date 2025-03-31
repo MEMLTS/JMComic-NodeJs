@@ -1,25 +1,40 @@
-import { browserCommander } from "../core/puppeteer";
 import * as cheerio from "cheerio";
+import { chaosRequest } from "../utils/request";
 
+/**
+ * ComicSearcher 类提供了一个基于关键词搜索漫画的功能。
+ */
 export class ComicSearcher {
+
+  /**
+   * 根据提供的关键词在网站上搜索漫画。
+   * @param keyword - 用于搜索的关键词。
+   * @returns 返回一个包含漫画搜索结果的对象。
+   */
   static async search(keyword: string) {
     const encodedKeyword = encodeURIComponent(keyword);
-    const targetUrl = `https://18comic.vip/search/photos?search_query=${encodedKeyword}`;
+    const url = `https://18comic-mhws.cc/search/photos?search_query=${encodedKeyword}`;
+    logger.info(`🔍 正在搜索关键词: ${keyword}`);
 
     try {
-      const { html } = await browserCommander.navigateToUrl(targetUrl);
+      const html = await chaosRequest({ url });
+
       return this.parseSearchResults(html);
     } catch (error) {
-      logger.error(
-        `搜索失败：${error instanceof Error ? error.message : "未知错误"}`
-      );
-      throw error;
+      logger.error('请求失败:', error);
     }
   }
 
+  /**
+   * 解析搜索结果的 HTML 内容，并提取相关的漫画信息。
+   * @param html - 搜索结果页面的 HTML 内容。
+   * @returns 返回包含漫画信息的对象，包括标题、浏览量、图片链接、标签等。
+   */
   private static parseSearchResults(html: string) {
     const $ = cheerio.load(html);
+
     const results: Array<Record<string, any>> = [];
+
     const selector = ".col-xs-6.col-sm-6.col-md-4.col-lg-3.list-col";
 
     $(selector).each((index, element) => {
@@ -36,14 +51,14 @@ export class ComicSearcher {
       });
 
       const resultData = {
-        title: extract(".video-title"),
-        views: extract(".text-white:first"),
-        imgSrc: extract("img", "data-original") || extract("img", "src"), // 备用src
-        category: extract(".label-category"),
-        albumLink: extract("a", "href"),
-        tags,
-        likes: extract(".label-loveicon span"),
-        author: extract(".title-truncate a:not(.tag)"),
+        title: extract(".video-title"), // 漫画标题
+        views: extract(".text-white:first"), // 浏览量
+        imgSrc: extract("img", "data-original") || extract("img", "src"),
+        category: extract(".label-category"), // 分类
+        albumLink: extract("a", "href"), // 专辑链接
+        tags, // 标签
+        likes: extract(".label-loveicon span"), // 点赞数
+        author: extract(".title-truncate a:not(.tag)"), // 作者
       };
 
       results.push(resultData);
