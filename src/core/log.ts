@@ -39,7 +39,7 @@ class QuantumLogger {
     return now.toISOString().substring(0, 19).replace("T", " ");
   }
 
-  // 🔍 等级
+  // 🔍 日志等级
   private shouldLog(level: LogLevel) {
     const levelOrder: LogLevel[] = [
       "debug",

@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-export function getNum(e: number, t: number|string): number {
+export function getNum(e: number, t: number | string): number {
     const decoded = {
         e,
         t,
@@ -12,7 +12,6 @@ export function getNum(e: number, t: number|string): number {
     const hash = createHash('md5')
         .update(`${decoded.e}${decoded.t}`)
         .digest('hex');
-
     const hashChar = hash.slice(-1);
     let codeValue = hashChar.charCodeAt(0);
 

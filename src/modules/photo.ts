@@ -1,3 +1,3 @@
-import { imageProcessor } from "../utils/sharp";
-import { getNum } from "../utils/sign";
+import { imageProcessor } from "@/utils/sharp";
+import { getNum } from "@/utils/sign";
 

@@ -4,11 +4,11 @@
   "type": "module",
   "description": "NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂",
   "main": "index.js",
+  "bin": {
+    "jmc": "./src/cli/index"
+  },
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "build": "tsc"
   },
   "keywords": [
     "JMComic",

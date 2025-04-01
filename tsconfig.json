@@ -12,9 +12,9 @@
     "strictBindCallApply": true,
     "paths": {
       "@/*": [
-        "*"
+        "./*", // 映射 '@/' 前缀到 'src/' 目录下的文件
       ],
-    }
+    },
   },
   "include": [
     "src/**/*"

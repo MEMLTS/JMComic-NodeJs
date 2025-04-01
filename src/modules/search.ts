@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import { chaosRequest } from "../utils/request";
+import { chaosRequest } from "@/utils/request";
 
 /**
  * 根据提供的关键词在网站上搜索漫画。

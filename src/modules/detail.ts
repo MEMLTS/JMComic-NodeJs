@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import { chaosRequest } from "../utils/request";
+import { chaosRequest } from "@/utils/request";
 
 export async function detail(id: string | number) {
     const url = `https://18comic-mhws.cc/album/${id}`;

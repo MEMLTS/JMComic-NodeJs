@@ -1,11 +1,11 @@
 import sharp from "sharp";
 
 interface ImageProcessorConfig {
-  input: Buffer | string; // 输入可以是Buffer（数据流）或Base64编码字符串
+  input: Buffer | string; // 输入可以是Buffer或Base64编码
   slices: number;         // 切割片数
   parentWidth: number;    // 父容器宽度
   quality?: number;       // 输出质量 (1-100)
-  outputFormatBase64?: boolean; // 是否返回Base64编码（默认返回Buffer数据流）
+  outputFormatBase64?: boolean; // 是否返回Base64编码（false则返回Buffer数据流）
 }
 
 /**
