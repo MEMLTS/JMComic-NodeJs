@@ -9,7 +9,7 @@ import { chaosRequest } from "@/utils/request";
 export async function search(keyword: string) {
   const encodedKeyword = encodeURIComponent(keyword);
   const url = `https://18comic-mhws.cc/search/photos?search_query=${encodedKeyword}`;
-  logger.info(`🔍 正在搜索关键词: ${keyword}`);
+  //logger.info(`🔍 正在搜索关键词: ${keyword}`);
 
   try {
     const response = await chaosRequest({ url });
@@ -17,11 +17,12 @@ export async function search(keyword: string) {
       const html = response.body.toString();
       return parseSearchResults(html);
     } else {
-      logger.error('请求返回的body为空');
+      //logger.error('请求返回的body为空');
       return null;
     }
   } catch (error) {
-    logger.error('请求失败:', error);
+    //logger.error('请求失败:', error);
+    throw new Error(`请求失败: ${error}`);
   }
 }
 

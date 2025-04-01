@@ -18,7 +18,7 @@ export async function fetchAndProcessPhoto(
 ): Promise<Buffer | string> {
     const { id, page } = params;
     const url = `https://deno-53-72-yka0q4ctjhmv.deno.dev/https://cdn-msp3.18comic.vip/media/photos/${id}/${page}.webp`;
-    logger.info(`🔍 正在获取并处理漫画ID ${id} 图片ID ${page}`);
+    //logger.info(`🔍 正在获取并处理漫画ID ${id} 图片ID ${page}`);
 
     try {
         const slices = getNum(id, page);
@@ -34,7 +34,7 @@ export async function fetchAndProcessPhoto(
 
         return processedImage;
     } catch (error) {
-        logger.error(`处理失败 [ID:${id}/P:${page}]`, error);
+        //logger.error(`处理失败 [ID:${id}/P:${page}]`, error);
         throw new Error(`图片处理失败: ${error instanceof Error ? error.message : '未知错误'}`);
     }
 }

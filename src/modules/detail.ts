@@ -3,7 +3,7 @@ import { chaosRequest } from "@/utils/request";
 
 export async function detail(id: string | number): Promise<AlbumData | null> {
     const url = `https://18comic-mhws.cc/album/${id}`;
-    logger.info(`🔍 正在查看漫画ID ${id} 简介`);
+    //logger.info(`🔍 正在查看漫画ID ${id} 简介`);
 
     try {
         const response = await chaosRequest({ url });
@@ -15,7 +15,8 @@ export async function detail(id: string | number): Promise<AlbumData | null> {
             return null;
         }
     } catch (error) {
-        logger.error('请求失败:', error);
+        //logger.error('请求失败:', error);
+        throw new Error('请求失败', { cause: error });
         return null;
     }
 }

@@ -43,7 +43,7 @@ export async function imageProcessor(config: ImageProcessorConfig): Promise<Buff
     // 默认返回Buffer数据流
     return outputBuffer;
   } catch (err) {
-    logger.error("❌ 处理失败:", err);
+    //logger.error("❌ 处理失败:", err);
     throw err;
   }
 }
