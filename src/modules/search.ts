@@ -48,7 +48,7 @@ function parseSearchResults(html: string) {
       views: extract(".text-white:first"), // 浏览量
       imgSrc: extract("img", "data-original") || extract("img", "src"), // 图片链接（备用src）
       category: extract(".label-category"), // 分类
-      albumLink: extract("a", "href"), // 专辑链接
+      albumLink: `https://18comic-mhws.cc${extract("a", "href")}`, // 专辑链接
       tags, // 标签
       likes: extract(".label-loveicon span"), // 点赞数
       author: extract(".title-truncate a:not(.tag)"), // 作者
