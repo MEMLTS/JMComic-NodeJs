@@ -7,11 +7,10 @@ export async function detail(id: string | number): Promise<AlbumData | null> {
 
     try {
         const response = await chaosRequest({ url });
-        if (response.body) {
-            const html = response.body.toString();
-            return parseDetailResults(html);
+        if (response) {
+            return parseDetailResults(response);
         } else {
-            logger.error('请求返回的body为空');
+            //logger.error('请求返回的body为空');
             return null;
         }
     } catch (error) {

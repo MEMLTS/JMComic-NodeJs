@@ -5,12 +5,12 @@ import { setupLogger } from "../src/core/log";
 setupLogger();
 
 
-// // 搜索
-// import { search } from "@/modules/search";
-// (async () => {
-//     const result = await search("基尼奇");
-//     logger.info("搜索结果:", result);
-// })();
+// 搜索
+import { search } from "../src/modules/search";
+(async () => {
+    const result = await search("基尼奇");
+    logger.info("搜索结果:", result);
+})();
 
 // // 详情
 // import { detail } from "@/modules/detail";

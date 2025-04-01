@@ -13,9 +13,8 @@ export async function search(keyword: string) {
 
   try {
     const response = await chaosRequest({ url });
-    if (response.body) {
-      const html = response.body.toString();
-      return parseSearchResults(html);
+    if (response) {
+      return parseSearchResults(response);
     } else {
       //logger.error('请求返回的body为空');
       return null;

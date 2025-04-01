@@ -7,11 +7,10 @@ export async function Introduction(id: string | number) {
 
     try {
         const response = await chaosRequest({ url });
-        if (response.body) {
-            const html = response.body.toString();
-            return parseAlbumContent(html);
+        if (response) {
+            return parseAlbumContent(response);
         } else {
-            logger.error('请求返回的body为空');
+            //logger.error('请求返回的body为空');
             return null;
         }
     } catch (error) {

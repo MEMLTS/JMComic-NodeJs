@@ -1,6 +1,6 @@
 {
   "name": "jmcomic-nodejs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂",
   "main": "dist/index.js",
