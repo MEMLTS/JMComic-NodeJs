@@ -27,3 +27,12 @@ setupLogger();
 // })();
 
 
+import { fetchAndProcessPhoto } from "./modules/photo";
+
+(async () => {
+    const result = await fetchAndProcessPhoto({
+        id: 1023983,
+        page: "00001"
+    });
+    logger.info("内容结果:", result);
+})();

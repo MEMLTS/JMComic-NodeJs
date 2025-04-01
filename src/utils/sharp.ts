@@ -1,9 +1,9 @@
 import sharp from "sharp";
 
 interface ImageProcessorConfig {
-  input: Buffer | string; // 输入可以是Buffer或Base64编码
+  input: Buffer | string | ArrayBuffer; // 输入可以是Buffer或Base64编码
   slices: number;         // 切割片数
-  parentWidth: number;    // 父容器宽度
+  parentWidth?: number;    // 父容器宽度
   quality?: number;       // 输出质量 (1-100)
   outputFormatBase64?: boolean; // 是否返回Base64编码（false则返回Buffer数据流）
 }
@@ -20,10 +20,12 @@ export async function imageProcessor(config: ImageProcessorConfig): Promise<Buff
     const image = sharp(inputBuffer);
     const metadata = await image.metadata();
 
+    const parentWidth = !config.parentWidth ? metadata.height! : config.parentWidth;
+
     const processParams = {
       naturalWidth: metadata.width!,
       naturalHeight: metadata.height!,
-      displayWidth: Math.min(metadata.width!, config.parentWidth),
+      displayWidth: Math.min(metadata.width!, parentWidth),
       slices: config.slices,
       quality: config.quality ?? 100, // 默认质量100
     };
