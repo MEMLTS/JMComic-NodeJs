@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 
 interface PhotoFetchAndProcessParams {
     id: number;
-    page: number|string;
+    page: number | string;
 }
 
 /**

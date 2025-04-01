@@ -1,15 +1,22 @@
 import * as cheerio from "cheerio";
 import { chaosRequest } from "@/utils/request";
 
-export async function detail(id: string | number) {
+export async function detail(id: string | number): Promise<AlbumData | null> {
     const url = `https://18comic-mhws.cc/album/${id}`;
     logger.info(`🔍 正在查看漫画ID ${id} 简介`);
 
     try {
-        const html = await chaosRequest({ url });
-        return parseDetailResults(html);
+        const response = await chaosRequest({ url });
+        if (response.body) {
+            const html = response.body.toString();
+            return parseDetailResults(html);
+        } else {
+            logger.error('请求返回的body为空');
+            return null;
+        }
     } catch (error) {
         logger.error('请求失败:', error);
+        return null;
     }
 }
 
@@ -30,10 +37,11 @@ interface AlbumData {
     authors: string[];
     videoUrl?: string;
 }
+
 function parseDetailResults(html: string): AlbumData {
     const $ = cheerio.load(html);
 
-    const albumId = Number($('#album_id').attr('value'));
+    const albumId = Number($('#album_id').attr('value')) || 0;
     const title = $('.book-name').text().trim();
 
     const coverImage = `https://cdn-msp2.18comic.vip/media/albums/${albumId}.jpg`;
@@ -70,12 +78,12 @@ function parseDetailResults(html: string): AlbumData {
         likes,
         description,
         uploader,
-        uploadDate: dates[0],
-        updateDate: dates[1],
+        uploadDate: dates[0] || '',
+        updateDate: dates[1] || '',
         works: tagExtractor('works'),
         characters: tagExtractor('actor'),
         tags: tagExtractor('tags'),
         authors: tagExtractor('author'),
-        videoUrl: `https://18comic.vip${videoSource}` || undefined
+        videoUrl: videoSource ? `https://18comic.vip${videoSource}` : undefined
     };
 }

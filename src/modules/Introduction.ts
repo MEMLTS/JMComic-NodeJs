@@ -6,8 +6,14 @@ export async function Introduction(id: string | number) {
     logger.info(`🔍 正在查看漫画ID ${id} 内容`);
 
     try {
-        const html = await chaosRequest({ url });
-        return parseAlbumContent(html);
+        const response = await chaosRequest({ url });
+        if (response.body) {
+            const html = response.body.toString();
+            return parseAlbumContent(html);
+        } else {
+            logger.error('请求返回的body为空');
+            return null;
+        }
     } catch (error) {
         logger.error('请求失败:', error);
     }

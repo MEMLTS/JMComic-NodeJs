@@ -12,9 +12,14 @@ export async function search(keyword: string) {
   logger.info(`🔍 正在搜索关键词: ${keyword}`);
 
   try {
-    const html = await chaosRequest({ url });
-
-    return parseSearchResults(html);
+    const response = await chaosRequest({ url });
+    if (response.body) {
+      const html = response.body.toString();
+      return parseSearchResults(html);
+    } else {
+      logger.error('请求返回的body为空');
+      return null;
+    }
   } catch (error) {
     logger.error('请求失败:', error);
   }
