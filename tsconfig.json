@@ -10,6 +10,10 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "strictBindCallApply": true,
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "sourceMap": true,
     "paths": {
       "@/*": [
         "./*", // 映射 '@/' 前缀到 'src/' 目录下的文件

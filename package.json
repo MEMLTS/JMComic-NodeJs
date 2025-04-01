@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "jmc": "./src/cli/index"
   },
@@ -37,5 +38,8 @@
     "cheerio": "^1.0.0",
     "node-fetch": "^3.3.2",
     "sharp": "^0.33.5"
-  }
+  },
+  "files": [
+    "dist/**/*"
+  ]
 }
