@@ -19,3 +19,11 @@ setupLogger();
 //     const result = await detail(1023983);
 //     logger.info("详情结果:", result);
 // })();
+
+// // 内容
+// import { Introduction } from "./modules/Introduction";
+
+// (async () => {
+//     const result = await Introduction(1023983);
+//     logger.info("内容结果:", result);
+// })();
