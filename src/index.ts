@@ -1,4 +1,11 @@
-export { fetchAndProcessPhoto } from "@/modules/photo";
-export { detail } from "@/modules/detail";
-export { Introduction } from "@/modules/Introduction";
-export { search } from "@/modules/search";
+import { fetchAndProcessPhoto } from "@/modules/photo";
+import { detail } from "@/modules/detail";
+import { Introduction } from "@/modules/Introduction";
+import { search } from "@/modules/search";
+
+export default {
+    fetchAndProcessPhoto,
+    detail,
+    Introduction,
+    search
+};
