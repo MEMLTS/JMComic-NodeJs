@@ -44,7 +44,7 @@ export async function imageProcessor(config: ImageProcessorConfig): Promise<Buff
     return outputBuffer;
   } catch (err) {
     //logger.error("❌ 处理失败:", err);
-    throw err;
+    throw new Error(`图片处理失败: ${err}`);
   }
 }
 

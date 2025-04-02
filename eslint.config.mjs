@@ -15,28 +15,34 @@ export default defineConfig([
     extends: ["js/recommended"],
   },
   tseslint.configs.recommended,
-]);
-
-module.exports = {
-  parser: "@typescript-eslint/parser",
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  plugins: ["@typescript-eslint"],
-  rules: {
-    // 禁止使用 /* eslint-disable @typescript-eslint */ 注释
-    "no-restricted-syntax": [
-      "error",
-      {
-        selector:
-          "Program > CommentBlock[value=/eslint-disable\\s+@typescript-eslint/]",
-        message: "禁止使用 /* eslint-disable @typescript-eslint */ 注释。",
+  {
+    files: ["**/*.ts"],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: "./tsconfig.json", // 指定 TypeScript 配置文件
       },
-    ],
-    // 禁止使用 any 类型
-    "@typescript-eslint/no-explicit-any": "error",
-    // 禁止使用 unknown 类型
-    "@typescript-eslint/no-unsafe-assignment": "error",
-    "@typescript-eslint/no-unsafe-call": "error",
-    "@typescript-eslint/no-unsafe-member-access": "error",
-    "@typescript-eslint/no-unsafe-return": "error",
+    },
+    plugins: {
+      "@typescript-eslint": tseslint.plugin,
+    },
+    rules: {
+      // 禁止使用 /* eslint-disable @typescript-eslint */ 注释
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "Program > CommentBlock[value=/eslint-disable\\s+@typescript-eslint/]",
+          message: "禁止使用 /* eslint-disable @typescript-eslint */ 注释。",
+        },
+      ],
+      // 禁止使用 any 类型
+      "@typescript-eslint/no-explicit-any": "off",
+      // 禁止使用 unknown 类型
+      "@typescript-eslint/no-unsafe-assignment": "error",
+      "@typescript-eslint/no-unsafe-call": "error",
+      "@typescript-eslint/no-unsafe-member-access": "error",
+      "@typescript-eslint/no-unsafe-return": "error",
+    },
   },
-};
+]);

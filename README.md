@@ -6,15 +6,19 @@ NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂
 
 ## 目录
 
-- [安装](#安装)
-- [使用方法](#使用方法)
-- [功能模块](#功能模块)
-  - [搜索漫画](#搜索漫画)
-  - [获取漫画详情](#获取漫画详情)
-  - [获取漫画内容](#获取漫画内容)
-  - [获取漫画图片](#获取漫画图片)
-- [示例代码](#示例代码)
-- [注意事项](#注意事项)
+- [JMComic-NodeJs](#jmcomic-nodejs)
+  - [目录](#目录)
+  - [安装](#安装)
+  - [使用方法](#使用方法)
+    - [函数调用](#函数调用)
+    - [Cli下载](#cli下载)
+  - [功能模块](#功能模块)
+    - [搜索漫画](#搜索漫画)
+    - [获取漫画详情](#获取漫画详情)
+    - [获取漫画内容](#获取漫画内容)
+    - [获取漫画图片](#获取漫画图片)
+  - [示例代码](#示例代码)
+  - [注意事项](#注意事项)
 
 ---
 
@@ -22,7 +26,7 @@ NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂
 
 使用 npm 安装：
 
-```bash
+```sh
 npm install jmcomic-nodejs
 ```
 
@@ -36,12 +40,13 @@ npm install jmcomic-nodejs
 
 全局安装命令行工具
 
-```bash
+```sh
 npm install -g jmcomic-nodejs
 ```
+
 使用命令行工具
 
-```bash
+```sh
 jmc -d 1023983
 ```
 
@@ -51,7 +56,7 @@ jmc -d 1023983
 
 提供关键词搜索功能，返回与关键词相关的漫画列表。
 
-```
+```js
 import JMComic from "jmcomic-nodejs"
 
 (async () => {
@@ -63,7 +68,8 @@ import JMComic from "jmcomic-nodejs"
 ### 获取漫画详情
 
 获取漫画详情信息，包括封面、标题、作者、简介等。
-```
+
+```js
 import JMComic from "jmcomic-nodejs"
 
 (async () => {
@@ -75,7 +81,8 @@ import JMComic from "jmcomic-nodejs"
 ### 获取漫画内容
 
 获取漫画内容
-```
+
+```js
 import JMComic from "jmcomic-nodejs"
 
 (async () => {
@@ -87,7 +94,8 @@ import JMComic from "jmcomic-nodejs"
 ### 获取漫画图片
 
 获取漫画图片
-```
+
+```js
 import JMComic from "jmcomic-nodejs"
 
 (async () => {
@@ -97,7 +105,8 @@ import JMComic from "jmcomic-nodejs"
 ```
 
 ## 示例代码
-```
+
+```js
 import JMComic from "jmcomic-nodejs"; // 修改导入方式
 
 (async () => {
