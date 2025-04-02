@@ -2,6 +2,8 @@
 
 NodeJS API for JMComic | 提供NodeJS API访问禁漫天堂
 
+> 当前项目开发中，版本变更可能巨大,尚未适配多话漫画
+
 ## 目录
 
 - [安装](#安装)
@@ -26,7 +28,22 @@ npm install jmcomic-nodejs
 
 ## 使用方法
 
+### 函数调用
+
 在项目中引入后，即可调用相关功能模块。
+
+### Cli下载
+
+全局安装命令行工具
+
+```bash
+npm install -g jmcomic-nodejs
+```
+使用命令行工具
+
+```bash
+jmcomic-nodejs -d 1023983
+```
 
 ## 功能模块
 
