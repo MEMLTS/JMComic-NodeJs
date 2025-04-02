@@ -42,7 +42,7 @@ npm install -g jmcomic-nodejs
 使用命令行工具
 
 ```bash
-jmcomic-nodejs -d 1023983
+jmc -d 1023983
 ```
 
 ## 功能模块
