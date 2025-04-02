@@ -18,6 +18,10 @@
     "nodejs",
     "18comic"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MEMLTS/JMComic-NodeJs.git"
+  },
   "author": "MEMLTS",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
